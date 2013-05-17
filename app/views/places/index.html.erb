@@ -1,0 +1,33 @@
+<h1>Aalborg Parking Places</h1>
+
+<table class="table table-condensed">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Vacant</th>
+			<th>Spaces</th>
+			<th>Open</th>
+			<th>Payment Active</th>
+			<th>Status</th>
+			<th>Longitude</th>
+			<th>Latitude</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @parking_places.each do |place| %>
+		<tr>
+			<td><%= link_to place[:name], place_path(id:place[:name]) %></td>
+			<td class="vacant"><%= place[:free_count] %></td>
+			<td class="max-spaces"><%= place[:max_count] %></td>
+			<td><%= place[:is_open] %></td>
+			<td><%= place[:is_payment_active] %></td>
+			<td><%= place[:status_park_place] %></td>
+			<td><%= place[:latitude] %></td>
+			<td><%= place[:longitude] %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<%= link_to 'JSON', places_path(format: :json), class:"btn btn-info btn-small" %>
+<%= link_to 'XML', places_path(format: :xml), class:"btn btn-info btn-small" %>

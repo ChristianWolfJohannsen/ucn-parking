@@ -1,0 +1,806 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.gtcpark.dk/ParkService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ParkService"
+	targetNamespace="http://www.gtcpark.dk/ParkService/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://www.gtcpark.dk/ParkService/">
+
+			<xsd:element name="ParkPlaces"
+				type="tns:ClientRequestHandleType">
+			</xsd:element>
+
+			<xsd:element name="ParkPlacesResponse">
+				<xsd:complexType>
+					<xsd:sequence minOccurs="1">
+
+						<xsd:element name="Status_Main" type="xsd:int">
+                            <xsd:annotation>
+                            	<xsd:documentation>1:OK 0:Error</xsd:documentation>
+                            </xsd:annotation>
+						</xsd:element>
+						<xsd:element name="CountOfParkPlaces" type="xsd:int">
+						</xsd:element>
+
+						<xsd:sequence minOccurs="0"
+							maxOccurs="unbounded">
+							<xsd:element name="Name" type="xsd:string"
+								maxOccurs="1" minOccurs="1">
+							</xsd:element>
+
+							<xsd:element name="IsOpen" type="xsd:int">
+                                <xsd:annotation>
+                                	<xsd:documentation>-1: Disabled  0: Closed  1: Open</xsd:documentation>
+                                </xsd:annotation>
+							</xsd:element>
+							<xsd:element name="IsPaymentActive"
+								type="xsd:int">
+                                <xsd:annotation>
+                                	<xsd:documentation>0: Not active  1: Active</xsd:documentation>
+                                </xsd:annotation>
+							</xsd:element>
+							<xsd:element name="Status_ParkPlace" type="xsd:int">
+								<xsd:annotation>
+									<xsd:documentation>1:OK 0:Error
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="Longitude"
+								type="xsd:float">
+							</xsd:element>
+							<xsd:element name="Latitude"
+								type="xsd:float">
+							</xsd:element>
+							<xsd:element name="MaxCount" type="xsd:int"
+								maxOccurs="1" minOccurs="1">
+							</xsd:element>
+							<xsd:element name="FreeCount"
+								type="xsd:int">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+
+
+			<xsd:element name="Parksigns"
+				type="tns:ClientRequestHandleType">
+			</xsd:element>
+
+			<xsd:element name="ParksignsResponse">
+				<xsd:complexType>
+					<xsd:sequence minOccurs="1" maxOccurs="1">
+
+						<xsd:element name="CountOfParksigns"
+							type="xsd:int">
+						</xsd:element>
+
+						<xsd:sequence minOccurs="0"
+							maxOccurs="unbounded">
+							<xsd:element name="Name"
+								type="xsd:string">
+							</xsd:element>
+							<xsd:element name="Status" type="xsd:int">
+								<xsd:annotation>
+									<xsd:documentation>
+										1: OK 0: Error
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="Longitude"
+								type="xsd:float">
+							</xsd:element>
+							<xsd:element name="Latitude"
+								type="xsd:float">
+							</xsd:element>
+							<xsd:element name="LineWidth"
+								type="xsd:int">
+							</xsd:element>
+							<xsd:element name="LineCount"
+								type="xsd:int">
+							</xsd:element>
+
+
+							<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+								<xsd:element name="Line"
+									type="xsd:int">
+								</xsd:element>
+								<xsd:element name="Show"
+									type="xsd:string">
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:sequence>
+						
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="Controller"
+				type="tns:ClientRequestHandleType">
+			</xsd:element>
+
+			<xsd:element name="ControllerResponse">
+				<xsd:complexType>
+					<xsd:sequence minOccurs="1" maxOccurs="1">
+
+						<xsd:element name="Name" type="xsd:string">
+						</xsd:element>
+						<xsd:element name="Description"
+							type="xsd:string">
+						</xsd:element>
+						<xsd:element name="Longitude"
+							type="xsd:float">
+						</xsd:element>
+						<xsd:element name="Latitude" type="xsd:float">
+						</xsd:element>
+						<xsd:element name="Status" type="xsd:int">
+                            <xsd:annotation>
+                            	<xsd:documentation>1:OK  0:Error</xsd:documentation>
+                            </xsd:annotation>
+						</xsd:element>
+						<xsd:element name="CountOfDetectors"
+							type="xsd:int">
+						</xsd:element>
+						<xsd:element name="CountOfInfosigns"
+							type="xsd:int">
+						</xsd:element>
+						<xsd:element name="CountOfParkPlaces"
+							type="xsd:int">
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="Version"
+				type="tns:ClientRequestHandleType">
+
+			</xsd:element>
+			<xsd:element name="VersionResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+
+						<xsd:element name="Name" type="xsd:string"></xsd:element>
+						<xsd:sequence minOccurs="1" maxOccurs="unbounded">
+							<xsd:element name="WebService"
+								type="xsd:string">
+							</xsd:element>
+							<xsd:element name="VersionDate"
+								type="xsd:dateTime">
+							</xsd:element>
+							<xsd:element name="VersionDescription"
+								type="xsd:string">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="ParkPlaceSetCount">
+
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ClientRequest"
+							type="tns:ClientRequestHandleType">
+						</xsd:element>
+						<xsd:element name="ParkPlaceName"
+							type="xsd:string">
+                            <xsd:annotation>
+                            	<xsd:documentation>Name of Park Place, must exists</xsd:documentation>
+                            </xsd:annotation>
+						</xsd:element>
+						<xsd:element name="IsOpen" type="xsd:int">
+                            <xsd:annotation>
+                            	<xsd:documentation>0: Closed  1: Open</xsd:documentation>
+                            </xsd:annotation>
+						</xsd:element>
+						<xsd:element name="MaxCount" type="xsd:int">
+						</xsd:element>
+						<xsd:element name="FreeCount"
+							type="xsd:int">
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="ParkPlaceSetCountResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+
+						<xsd:element name="Response" type="xsd:int">
+							<xsd:annotation>
+								<xsd:documentation>
+									1: OK -1: Error in update 0:
+									ParkPlace not exists
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+
+						<xsd:element name="Description"
+							type="xsd:string">
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		
+			<xsd:group name="NewGroupDefinition">
+				<xsd:sequence></xsd:sequence>
+			</xsd:group>
+			<xsd:element name="ParksignGetShowInfo">
+				<xsd:complexType>
+					<xsd:sequence>
+
+						<xsd:element name="ClientRequest"
+							type="tns:ClientRequestHandleType">
+						</xsd:element>
+						<xsd:element name="ParksignName"
+							type="xsd:string">
+						</xsd:element>
+
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="ParksignGetShowInfoResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+
+						<xsd:element name="Status" type="xsd:int">
+							<xsd:annotation>
+								<xsd:documentation>
+									1: OK -1: Error in update 0:
+									Parksign not exists
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="Description"
+							type="xsd:string">
+						</xsd:element>
+						<xsd:sequence maxOccurs="unbounded" minOccurs="1">
+							<xsd:element name="Line" type="xsd:int">
+							</xsd:element>
+							<xsd:element name="ShowInfo"
+								type="xsd:string">
+							</xsd:element>
+							<xsd:element name="State"
+								type="xsd:int">
+                                <xsd:annotation>
+                                	<xsd:documentation>1: Show text  0: Turned off</xsd:documentation>
+                                </xsd:annotation>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="ParkPlacesInfo">
+				<xsd:complexType>
+					<xsd:sequence>
+
+						<xsd:element name="ClientRequest"
+							type="tns:ClientRequestHandleType">
+						</xsd:element>
+						<xsd:element name="ParkPlaceName"
+							type="xsd:string" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                            	<xsd:documentation>Get information for single Parking place. For list of all Parking places leave it empty.</xsd:documentation>
+                            </xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="ParkPlacesInfoResponse">
+				<xsd:complexType>
+					<xsd:sequence minOccurs="1" maxOccurs="1">
+
+						<xsd:element name="Status_Main"
+							type="xsd:int">
+							<xsd:annotation>
+								<xsd:documentation>
+									1:OK 0:Error
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="CountOfParkPlaces"
+							type="xsd:int">
+						</xsd:element>
+						<xsd:sequence minOccurs="0"
+							maxOccurs="unbounded">
+							<xsd:element name="Name"
+								type="xsd:string">
+							</xsd:element>
+							<xsd:element name="Status_ParkPlace"
+								type="xsd:int" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										1:OK 0:Error
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="Description"
+								type="xsd:string" minOccurs="0" maxOccurs="1">
+							</xsd:element>
+							<xsd:element name="DescriptionPublic"
+								type="xsd:string" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										Description for public use,
+										exam. at webiste.
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="IsOpen" type="xsd:int"
+								minOccurs="0">
+							</xsd:element>
+							<xsd:element name="CountOfHandicapPlaces"
+								type="xsd:int" minOccurs="0">
+							</xsd:element>
+							<xsd:element name="CountOfChargingStations"
+								type="xsd:int" minOccurs="0">
+							</xsd:element>
+							<xsd:element name="OpeningTimeDescription"
+								type="xsd:string" minOccurs="0">
+							</xsd:element>
+							<xsd:element name="PayPeriodDescription"
+								type="xsd:string" minOccurs="0">
+							</xsd:element>
+							<xsd:element name="PriceDescription"
+								type="xsd:string" minOccurs="0">
+							</xsd:element>
+							<xsd:element name="PriceFreePeriod"
+								type="xsd:int" minOccurs="0">
+							</xsd:element>
+							<xsd:element name="PricePerMinut"
+								type="xsd:float" minOccurs="0">
+							</xsd:element>
+
+
+						</xsd:sequence>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="SingleSpace"
+				type="tns:ClientRequestHandleType">
+
+			</xsd:element>
+			<xsd:element name="SingleSpaceResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+
+						<xsd:element name="Status_Main" type="xsd:int">
+							<xsd:annotation>
+								<xsd:documentation>
+									1:OK 0:Error
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="CountOfSingleSpace"
+							type="xsd:int">
+						</xsd:element>
+						<xsd:sequence>
+							<xsd:element name="Name"
+								type="xsd:string">
+							</xsd:element>
+							<xsd:element name="Status_SingleSpace" type="xsd:int">
+								<xsd:annotation>
+									<xsd:documentation>
+										1:OK 0:Error
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="Occupied"
+								type="xsd:int">
+							</xsd:element>
+							<xsd:element name="ParkingPeriod"
+								type="xsd:float">
+							</xsd:element>
+							<xsd:element name="Longitude"
+								type="xsd:float">
+							</xsd:element>
+							<xsd:element name="Latitude"
+								type="xsd:float">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="ParkPlacePayPeriods">
+
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ClientRequest"
+							type="tns:ClientRequestHandleType">
+						</xsd:element>
+						<xsd:element name="ParkPlaceName"
+							type="xsd:string" maxOccurs="1" minOccurs="0">
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="ParkPlaceClosedPeriods">
+
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ClientRequest"
+							type="tns:ClientRequestHandleType">
+						</xsd:element>
+						<xsd:element name="ParkPlaceName"
+							type="xsd:string" maxOccurs="1" minOccurs="0">
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="ParkPlaceClosedPeriodsResponse">
+				<xsd:complexType>
+					<xsd:sequence minOccurs="1" maxOccurs="1">
+
+						<xsd:element name="Status" type="xsd:int"></xsd:element>
+						<xsd:sequence minOccurs="0"
+							maxOccurs="unbounded">
+							<xsd:element name="Name"
+								type="xsd:string">
+							</xsd:element>
+
+
+
+							<xsd:element name="ClosedWeekDay"
+								type="xsd:int">
+							</xsd:element>
+							<xsd:element name="ClosedFrom"
+								type="xsd:time">
+							</xsd:element>
+							<xsd:element name="ClosedTo"
+								type="xsd:time">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		
+		
+			<xsd:complexType name="ClientRequestHandleType">
+				<xsd:sequence>
+					<xsd:element name="Password" type="xsd:string"></xsd:element>
+					<xsd:element name="ClientRequestHandle"
+						type="xsd:string">
+					</xsd:element>
+					<xsd:element name="RequestTime" type="xsd:dateTime"></xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="ParkPlacesLaneInfo">
+				<xsd:complexType>
+					<xsd:sequence>
+
+						<xsd:element name="ClientRequest"
+							type="tns:ClientRequestHandleType">
+						</xsd:element>
+						<xsd:element name="ParkPlaceName"
+							type="xsd:string" maxOccurs="1" minOccurs="0">
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="NewOperationResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+
+						<xsd:element name="out" type="xsd:string"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+            <xsd:element name="NewElement" type="xsd:string"></xsd:element>
+            <xsd:element name="ParkPlacePayPeriodsResponse">
+            	<xsd:complexType>
+            		<xsd:sequence maxOccurs="1" minOccurs="1">
+            			<xsd:element name="Status" type="xsd:int">
+            			</xsd:element>
+            			<xsd:sequence maxOccurs="unbounded" minOccurs="0">
+            				<xsd:element name="Name"
+            					type="xsd:string">
+            				</xsd:element>
+            				<xsd:element name="PayWeekDay"
+            					type="xsd:int">
+            				</xsd:element>
+            				<xsd:element name="PayFrom"
+            					type="xsd:time">
+            				</xsd:element>
+            				<xsd:element name="PayTo"
+            					type="xsd:time">
+            				</xsd:element>
+            			</xsd:sequence>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ParkPlacesLaneInfoResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="Status" type="xsd:int"></xsd:element>
+            			<xsd:sequence maxOccurs="unbounded" minOccurs="0">
+            				<xsd:element name="Name"
+            					type="xsd:string">
+            				</xsd:element>
+            				<xsd:element name="AccessStreet"
+            					type="xsd:string">
+            				</xsd:element>
+            				<xsd:element name="Mode" type="xsd:int">
+            				</xsd:element>
+            				<xsd:element name="Longitude"
+            					type="xsd:string">
+            				</xsd:element>
+            				<xsd:element name="Latitude"
+            					type="xsd:string">
+            				</xsd:element>
+            			</xsd:sequence>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+		</xsd:schema>
+	</wsdl:types>
+
+
+
+	<wsdl:message name="ParkPlacesRequest">
+		<wsdl:part name="parameters" element="tns:ParkPlaces"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ParkPlacesResponse">
+		<wsdl:part name="parameters" element="tns:ParkPlacesResponse"></wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="ParksignsRequest">
+		<wsdl:part name="parameters" element="tns:Parksigns"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ParksignsResponse">
+		<wsdl:part name="parameters" element="tns:ParksignsResponse"></wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="ControllerRequest">
+		<wsdl:part name="parameters" element="tns:Controller"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ControllerResponse">
+		<wsdl:part name="parameters" element="tns:ControllerResponse"></wsdl:part>
+	</wsdl:message>
+
+
+	<wsdl:message name="VersionRequest">
+		<wsdl:part name="parameters" element="tns:Version"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="VersionResponse">
+		<wsdl:part name="parameters" element="tns:VersionResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ParkPlaceSetCountRequest">
+		<wsdl:part name="parameters" element="tns:ParkPlaceSetCount"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ParkPlaceSetCountResponse">
+		<wsdl:part name="parameters" element="tns:ParkPlaceSetCountResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ParksignGetShowInfoRequest">
+		<wsdl:part name="parameters" element="tns:ParksignGetShowInfo"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ParksignGetShowInfoResponse">
+		<wsdl:part name="parameters" element="tns:ParksignGetShowInfoResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ParkPlacesInfoRequest">
+		<wsdl:part name="parameters" element="tns:ParkPlacesInfo"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ParkPlacesInfoResponse">
+		<wsdl:part name="parameters" element="tns:ParkPlacesInfoResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="SingleSpaceRequest">
+		<wsdl:part name="parameters" element="tns:SingleSpace"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="SingleSpaceResponse">
+		<wsdl:part name="parameters" element="tns:SingleSpaceResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ParkPlacePayPeriodsRequest">
+		<wsdl:part name="parameters" element="tns:ParkPlacePayPeriods"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ParkPlacePayPeriodsResponse">
+		<wsdl:part name="parameters"
+			element="tns:ParkPlacePayPeriodsResponse">
+		</wsdl:part>
+		
+	</wsdl:message>
+	<wsdl:message name="ParkPlaceClosedPeriodsRequest">
+		<wsdl:part name="parameters" element="tns:ParkPlaceClosedPeriods"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ParkPlaceClosedPeriodsResponse">
+		<wsdl:part name="parameters" element="tns:ParkPlaceClosedPeriodsResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ParkPlacesLaneInfoRequest">
+		<wsdl:part name="parameters" element="tns:ParkPlacesLaneInfo"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="NewOperationResponse">
+		<wsdl:part name="parameters" element="tns:NewOperationResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ParkPlacesLaneInfoResponse1">
+		<wsdl:part name="parameters" element="tns:ParkPlacesLaneInfoResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="ParkService">
+
+		<wsdl:operation name="ParkPlaces">
+			<wsdl:documentation>Get count of Park levels and information
+			</wsdl:documentation>
+			<wsdl:input message="tns:ParkPlacesRequest"></wsdl:input>
+			<wsdl:output message="tns:ParkPlacesResponse"></wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="Parksigns">
+			<wsdl:input message="tns:ParksignsRequest"></wsdl:input>
+			<wsdl:output message="tns:ParksignsResponse"></wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="Controller">
+			<wsdl:input message="tns:ControllerRequest"></wsdl:input>
+			<wsdl:output message="tns:ControllerResponse"></wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="Version">
+			<wsdl:input message="tns:VersionRequest"></wsdl:input>
+			<wsdl:output message="tns:VersionResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ParkPlaceSetCount">
+			<wsdl:input message="tns:ParkPlaceSetCountRequest"></wsdl:input>
+			<wsdl:output message="tns:ParkPlaceSetCountResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ParksignGetShowInfo">
+			<wsdl:input message="tns:ParksignGetShowInfoRequest"></wsdl:input>
+			<wsdl:output message="tns:ParksignGetShowInfoResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ParkPlacesInfo">
+			<wsdl:input message="tns:ParkPlacesInfoRequest"></wsdl:input>
+			<wsdl:output message="tns:ParkPlacesInfoResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SingleSpace">
+			<wsdl:input message="tns:SingleSpaceRequest"></wsdl:input>
+			<wsdl:output message="tns:SingleSpaceResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ParkPlacePayPeriods">
+			<wsdl:input message="tns:ParkPlacePayPeriodsRequest"></wsdl:input>
+			<wsdl:output message="tns:ParkPlacePayPeriodsResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ParkPlaceClosedPeriods">
+			<wsdl:input message="tns:ParkPlaceClosedPeriodsRequest"></wsdl:input>
+			<wsdl:output message="tns:ParkPlaceClosedPeriodsResponse"></wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="ParkPlacesLaneInfo">
+			<wsdl:input message="tns:ParkPlacesLaneInfoRequest"></wsdl:input>
+			<wsdl:output message="tns:ParkPlacesLaneInfoResponse1"></wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="ParkServiceSOAP" type="tns:ParkService">
+
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="ParkPlaces">
+
+			<soap:operation
+				soapAction="http://www.gtcpark.dk/ParkService/ParkPlaces" />
+			<wsdl:input>
+
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="Parksigns">
+
+			<soap:operation
+				soapAction="http://www.gtcpark.dk/ParkService/Parksigns" />
+			<wsdl:input>
+
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="Controller">
+
+			<soap:operation
+				soapAction="http://www.gtcpark.dk/ParkService/Controller" />
+			<wsdl:input>
+
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="Version">
+
+			<soap:operation
+				soapAction="http://www.gtcpark.dk/ParkService/Version" />
+			<wsdl:input>
+
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ParkPlaceSetCount">
+			<soap:operation
+				soapAction="http://www.gtcpark.dk/ParkService/ParkPlaceSetCount" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ParksignGetShowInfo">
+			<soap:operation
+				soapAction="http://www.gtcpark.dk/ParkService/ParksignGetShowInfo" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ParkPlacesInfo">
+			<soap:operation
+				soapAction="http://www.gtcpark.dk/ParkService/ParkPlacesInfo" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SingleSpace">
+			<soap:operation
+				soapAction="http://www.gtcpark.dk/ParkService/SingleSpace" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ParkPlacePayPeriods">
+			<soap:operation
+				soapAction="http://www.gtcpark.dk/ParkService/ParkPlacePayPeriods" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ParkPlaceClosedPeriods">
+			<soap:operation
+				soapAction="http://www.gtcpark.dk/ParkService/ParkPlaceClosedPeriods" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ParkPlacesLaneInfo">
+			<soap:operation
+				soapAction="http://www.gtcpark.dk/ParkService/ParkPlacesLaneInfo" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+
+	<wsdl:service name="ParkService">
+		<wsdl:port binding="tns:ParkServiceSOAP" name="ParkService">
+			<soap:address location="http://localhost:8080" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

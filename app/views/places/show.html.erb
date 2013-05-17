@@ -1,0 +1,18 @@
+<h1><%= @parking_place_info[:name] %></h1>
+
+<p><strong>Status</strong> <%= @parking_place_info[:status_park_place] %></p>
+<p><strong>Description</strong> <%= @parking_place_info[:description] %></p>
+<p><strong>Public Description</strong> <%= @parking_place_info[:description_public] %></p>
+<p><strong>Open</strong> <%= @parking_place_info[:is_open] %></p>
+<p><strong>Handicap Spaces</strong> <%= @parking_place_info[:count_of_handicap_places] %></p>
+<p><strong>Charging Stations</strong> <%= @parking_place_info[:count_of_charging_stations] %></p>
+<p><strong>Opening Hours</strong> <%= @parking_place_info[:opening_time_description] %></p>
+<p><strong>Pay Period</strong> <%= @parking_place_info[:pay_period_description] %></p>
+<p><strong>Price</strong> <%= @parking_place_info[:price_description] %></p>
+<p><strong>Free Period</strong> <%= @parking_place_info[:price_free_period] %></p>
+<p><strong>Price Per Minute</strong> <%= @parking_place_info[:price_per_minut] %></p>
+
+<% if @parking_place_info[:name] %>
+<%= link_to 'JSON', place_path(id:@parking_place_info[:name], format: :json), class:"btn btn-info btn-small" %>
+<%= link_to 'XML', place_path(id:@parking_place_info[:name], format: :xml), class:"btn btn-info btn-small" %>
+<% end %>
