@@ -28,7 +28,7 @@ group :test do
 end
 
 gem 'thin'
-gem 'savon',   '~> 1.1.0'
+gem 'savon',   '~> 2.0'
 gem 'httpclient'
 gem 'bootstrap-sass'
 
