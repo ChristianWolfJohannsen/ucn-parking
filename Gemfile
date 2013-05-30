@@ -15,7 +15,6 @@ group :production do
 end
 
 group :development, :test do
-  gem "rspec-rails", ">= 2.8.1"
 end
 
 group :test do
@@ -24,7 +23,7 @@ group :test do
   gem "capybara", ">= 1.1.2"
   gem "database_cleaner"
   gem "launchy"
-	gem 'webrat'
+	gem 'rspec-rails'
 end
 
 gem 'thin'

@@ -5,10 +5,9 @@ class PlacesController < ApplicationController
 	def index
 		client = setup_savon
 		message = {
-			"Password" => ENV['AK_SOAP_PASS'],
-			"RequestTime" => DateTime::now,
-			"ClientRequestHandle" => 'ucn',
-			:order! => ["Password", "ClientRequestHandle", "RequestTime"]
+			password: ENV['AK_SOAP_PASS'],
+			client_request_handle: 'ucn',
+			request_time: DateTime::now
 		}
 		response = client.call(:park_places, message: message)
 
@@ -52,12 +51,12 @@ class PlacesController < ApplicationController
 	def show
 		client = setup_savon
 		message = {
-			"ClientRequest" => {
-				"Password" => ENV['AK_SOAP_PASS'],
-				"ClientRequestHandle" => 'ucn',
-				"RequestTime" => DateTime::now
+			client_request: {
+				password: ENV['AK_SOAP_PASS'],
+				client_request_handle: 'ucn',
+				request_time: DateTime::now
 			},
-			"ParkPlaceName" => params[:id]
+			park_place_name: params[:id]
 		}
 		response = client.call(:park_places_info, message: message)
 
@@ -85,6 +84,7 @@ class PlacesController < ApplicationController
 			wsdl wsdl_path
 			endpoint "http://83.90.235.21:8080/ParkService/services/ParkService/"
 			digest_auth ENV['AK_AUTH_USER'], ENV['AK_AUTH_PASS']
+			convert_request_keys_to :camelcase
 		end
 	end
 end
