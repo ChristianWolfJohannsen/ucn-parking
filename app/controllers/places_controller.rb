@@ -1,8 +1,12 @@
 class PlacesController < ApplicationController
+	rescue_from Savon::Error, with: :SOAPerror
+
 	# GET places
 	# GET places.json
 	# GET places.xml
 	def index
+		@parking_places = Array.new
+
 		client = setup_savon
 		message = {
 			password: ENV['AK_SOAP_PASS'],
@@ -11,7 +15,6 @@ class PlacesController < ApplicationController
 		}
 		response = client.call(:park_places, message: message)
 
-		@parking_places = Array.new
 		if response.success?
 			response_content = response.body[:park_places_response]
 			names = response_content[:name]
@@ -49,18 +52,19 @@ class PlacesController < ApplicationController
 	# GET /places/name.json
 	# GET /places/name.xml
 	def show
+		@parking_place_info = Hash.new
+		
 		client = setup_savon
 		message = {
 			client_request: {
 				password: ENV['AK_SOAP_PASS'],
 				client_request_handle: 'ucn',
 				request_time: DateTime::now
-			},
-			park_place_name: params[:id]
-		}
+				},
+				park_place_name: params[:id]
+			}
 		response = client.call(:park_places_info, message: message)
 
-		@parking_place_info = Hash.new
 		if response.success?
 			@parking_place_info = response.body[:park_places_info_response]
 			@parking_place_info.delete(:'@xmlns:ns1') # Remove illegal key for XML rendering
@@ -79,12 +83,21 @@ class PlacesController < ApplicationController
 		wsdl_path = File.expand_path("../ParkService.wsdl", __FILE__)
 		Savon.client do
 			log false
-			logger Rails.logger
+			log_level :debug
 			pretty_print_xml true
 			wsdl wsdl_path
 			endpoint "http://83.90.235.21:8080/ParkService/services/ParkService/"
 			digest_auth ENV['AK_AUTH_USER'], ENV['AK_AUTH_PASS']
 			convert_request_keys_to :camelcase
+		end
+	end
+
+	def SOAPerror(error)
+		logger.debug "ERROR: #{error.message}"
+		respond_to do |format|
+			format.html
+			format.json { render json: [] }
+			format.xml { render xml: [] }
 		end
 	end
 end

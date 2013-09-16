@@ -55,6 +55,9 @@ gem 'unicorn'
 # Deploy with Capistrano
 # gem 'capistrano'
 
+# For Heroku
+gem 'rails_12factor'
+
 # To use debugger
 # gem 'debugger'
 
