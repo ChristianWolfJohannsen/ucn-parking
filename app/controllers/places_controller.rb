@@ -1,5 +1,6 @@
 class PlacesController < ApplicationController
-	rescue_from Savon::Error, Errno::ENETUNREACH, with: :SOAPerror
+	rescue_from Savon::Error, with: :SOAPerror
+	rescue_from Errno::ENETUNREACH, with: :SOAPerror
 
 	# GET places
 	# GET places.json
