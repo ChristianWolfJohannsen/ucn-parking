@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 ruby "2.0.0"
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.1'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -54,6 +54,10 @@ gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
+
+# Use memcache through Memcachier Heroku add-on
+gem 'memcachier'
+gem 'dalli'
 
 # For Heroku
 gem 'rails_12factor'

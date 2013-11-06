@@ -5,6 +5,7 @@ Ucnparking::Application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
+  config.cache_store = :memory_store, { expires_in: 300, race_condition_ttl: 300 }
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
