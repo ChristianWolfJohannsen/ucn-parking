@@ -31,10 +31,15 @@ class PlacesController < ApplicationController
 				},
 				park_place_name: params[:id]
 			}
-		response = client.call(:park_places_info, message: message)
+		response = client.call(:park_places_info, message: message)  # Giver Status_Main -92
+		# response = client.call(:park_place_pay_periods, message: message)  # Giver Status -91
+		# response = client.call(:park_place_closed_periods, message: message)  # Giver Status -91
+		# response = client.call(:park_places_lane_info, message: message)  # Giver svar
+		# response = client.call(:single_space, message: message)  # Giver Status_Main 0
 
 		if response.success?
 			@parking_place_info = response.body[:park_places_info_response]
+			# @parking_place_info = response.body[:park_places_lane_info_response]
 			@parking_place_info.delete(:'@xmlns:ns1') # Remove illegal key for XML rendering
 		end
 
@@ -48,8 +53,6 @@ class PlacesController < ApplicationController
 	private
 
 	def fetch_parking_places
-		logger.debug "Called fetch_parking_places"
-
 		parking_places = Array.new
 
 		client = setup_savon
@@ -95,7 +98,7 @@ class PlacesController < ApplicationController
 			log_level :debug
 			pretty_print_xml true
 			wsdl wsdl_path
-			endpoint "http://83.90.235.21:8080/ParkService/services/ParkService/"
+			endpoint ENV['AK_ENDPOINT']
 			digest_auth ENV['AK_AUTH_USER'], ENV['AK_AUTH_PASS']
 			convert_request_keys_to :camelcase
 		end
