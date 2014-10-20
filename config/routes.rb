@@ -1,5 +1,5 @@
 Ucnparking::Application.routes.draw do
-  resources :places, only:[:index, :show]
+  resources :places, only: [:index, :show]
   # get "places/index"
   # get "/places/:id"
 
@@ -52,7 +52,7 @@ Ucnparking::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'places#index'
+  root to: 'places#index'
 
   # See how all your routes lay out with "rake routes"
 
