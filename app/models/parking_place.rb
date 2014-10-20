@@ -9,14 +9,14 @@ class ParkingPlace
   # end
 
   # Accessor methods
-  attr_accessor :name
-  attr_accessor :open?
-  attr_accessor :payment_active?
-  attr_accessor :status_park_place
-  attr_accessor :longitude
-  attr_accessor :latitude
-  attr_accessor :max_count
-  attr_accessor :free_count
+  # attr_accessor :name
+  # attr_accessor :open?
+  # attr_accessor :payment_active?
+  # attr_accessor :status_park_place
+  # attr_accessor :longitude
+  # attr_accessor :latitude
+  # attr_accessor :max_count
+  # attr_accessor :free_count
 
   # Requests
   def self.all
