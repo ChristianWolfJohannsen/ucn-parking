@@ -6,17 +6,17 @@
   "env": {
     "AK_AUTH_USER": {
       "description": "The username for the parking service supplied in the course documentation.",
-      "value": "Remember to set me!",
+      "value": "You must set me!",
       "required": "true"
     },
     "AK_AUTH_PASS": {
       "description": "The password for the parking service supplied in the course documentation.",
-      "value": "Remember to set me!",
+      "value": "You must set me!",
       "required": "true"
     },
     "AK_SOAP_PASS": {
       "description": "The SOAP password for the parking service supplied in the course documentation.",
-      "value": "Remember to set me!",
+      "value": "You must set me!",
       "required": "true"
     },
     "WEB_CONCURRENCY": {

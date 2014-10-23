@@ -40,7 +40,16 @@ Ucnparking::Application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   # Use a different cache store in production
-  config.cache_store = :dalli_store, { expires_in: 300, race_condition_ttl: 300 }
+  config.cache_store = :dalli_store,
+                       (ENV["MEMCACHIER_SERVERS"] || "").split(","),
+                       {
+                         username: ENV["MEMCACHIER_USERNAME"],
+                         password: ENV["MEMCACHIER_PASSWORD"],
+                         failover: true,
+                         socket_timeout: 1.5,
+                         socket_failure_delay: 0.2,
+                         expires_in: 300, race_condition_ttl: 300
+                       }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
