@@ -1,0 +1,32 @@
+{
+  "name": "UCN Parking",
+  "description": "Demo project for PBA Software at University College Nordjylland. Acts as a proxy for the parking information system in Aalborg Kommune.",
+  "repository": "https://github.com/ChristianHoj/ucn-parking",
+  "keywords": ["ruby on rails", "proxy"],
+  "env": {
+    "AK_AUTH_USER": {
+      "description": "The username for the parking service supplied in the course documentation.",
+      "value": "Remember to set me!",
+      "required": "true"
+    },
+    "AK_AUTH_PASS": {
+      "description": "The password for the parking service supplied in the course documentation.",
+      "value": "Remember to set me!",
+      "required": "true"
+    },
+    "AK_SOAP_PASS": {
+      "description": "The SOAP password for the parking service supplied in the course documentation.",
+      "value": "Remember to set me!",
+      "required": "true"
+    },
+    "WEB_CONCURRENCY": {
+      "description": "The number of processes to run.",
+      "value": "3"
+    }
+  },
+  "addons": [
+    "blitz:250",
+    "memcachier:dev",
+    "newrelic:stark"
+  ]
+}
