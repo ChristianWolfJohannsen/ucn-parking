@@ -4,19 +4,24 @@
   "repository": "https://github.com/ChristianHoj/ucn-parking",
   "keywords": ["ruby on rails", "proxy"],
   "env": {
+    "AK_ENDPOINT": {
+      "description": "Enter the IP address for the parking service supplied in the course documentation.",
+      "value": "http://<<REPLACE ME>>:8080/ParkService/services/ParkService/",
+      "required": "true"
+    },
     "AK_AUTH_USER": {
       "description": "The username for the parking service supplied in the course documentation.",
-      "value": "You must set me!",
+      "value": "Paxxxxxxx",
       "required": "true"
     },
     "AK_AUTH_PASS": {
       "description": "The password for the parking service supplied in the course documentation.",
-      "value": "You must set me!",
+      "value": "66xxxxxxxxx",
       "required": "true"
     },
     "AK_SOAP_PASS": {
       "description": "The SOAP password for the parking service supplied in the course documentation.",
-      "value": "You must set me!",
+      "value": "20xxxxxxxx",
       "required": "true"
     },
     "WEB_CONCURRENCY": {
@@ -27,6 +32,7 @@
   "addons": [
     "blitz:250",
     "memcachier:dev",
-    "newrelic:stark"
+    "newrelic:stark",
+    "papertrail:choklad"
   ]
 }
